@@ -7,7 +7,7 @@ import CoursesPage from "./pages/CoursesPage"; // <-- Add this import
 
 function App() {
   return (
-    <Router>
+    <Router basename="/MoveMaven/">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/trainer" element={<TrainerPage />} />
