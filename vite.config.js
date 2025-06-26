@@ -8,4 +8,8 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   base: '/MoveMaven/',
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> fe2f97ad95b7efbd181b77a7b8de183dc262fc2e
