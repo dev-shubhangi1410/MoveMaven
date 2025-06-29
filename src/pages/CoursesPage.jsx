@@ -2,49 +2,9 @@ import React from 'react';
 import Header from '../components/Header';
 import CourseCard from '../components/CourseCard';
 import Footer from '../components/Footer';
+// Top of CoursesPage.jsx
+import courses from '../data/courses.json';
 
-const courses = [
-  {
-    title: "Italian Game",
-    description: "Master this classical opening that leads to exciting tactical battles. Perfect for beginners learning opening principles.",
-    difficulty: "Beginner",
-    duration: "2 hours",
-    rating: 4.8,
-    image: "♔"
-  },
-  {
-    title: "Sicilian Defense",
-    description: "Explore the most popular defense against 1.e4. Learn key variations and strategic concepts used by grandmasters.",
-    difficulty: "Intermediate",
-    duration: "3 hours",
-    rating: 4.9,
-    image: "♛"
-  },
-  {
-    title: "Queen's Gambit",
-    description: "Control the center and develop pieces quickly with this classic and aggressive 1.d4 opening.",
-    difficulty: "Intermediate",
-    duration: "2.5 hours",
-    rating: 4.7,
-    image: "♕"
-  },
-  {
-    title: "French Defense",
-    description: "Solid and strategic response to 1.e4. Learn how to build strong pawn structures and counterplay.",
-    difficulty: "Intermediate",
-    duration: "3 hours",
-    rating: 4.6,
-    image: "♖"
-  },
-  {
-    title: "London System",
-    description: "A reliable and easy-to-learn system for White that avoids heavy opening theory.",
-    difficulty: "Beginner",
-    duration: "1.5 hours",
-    rating: 4.5,
-    image: "♙"
-  }
-];
 
 export default function CoursesPage() {
   return (

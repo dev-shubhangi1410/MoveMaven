@@ -1,6 +1,7 @@
 import React from 'react';
 import { Crown, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import courses from '../data/courses.json';
 
 const Header = () => {
   return (
@@ -16,7 +17,7 @@ const Header = () => {
           
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/courses" className="text-gray-300 hover:text-blue-400 transition-colors">Courses</Link>
-            <Link to="/trainer" className="text-gray-300 hover:text-blue-400 transition-colors">Practice</Link>
+            <Link to={`/trainer/${courses[0].id}`} className="text-gray-300 hover:text-blue-400 transition-colors">Practice</Link>
             {/* <a href="/trainer" className="text-gray-300 hover:text-blue-400 transition-colors">Practice</a> */}
             {/* <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">About</a> */}
             <button className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25">

@@ -1,0 +1,34 @@
+    [
+    {
+        "id": "italian-game",
+        "title": "Italian Game",
+        "side": "white", 
+        "description": "Master this classical opening that leads to exciting tactical battles. Perfect for beginners learning opening principles.",
+        "difficulty": "Beginner",
+        "duration": "2 hours",
+        "rating": 4.8,
+        "image": "♔",
+        "moves": [
+        {
+            "san": "e4",
+            "comment": "White occupies the center."
+        },
+        {
+            "san": "e5",
+            "comment": "Black responds symmetrically."
+        },
+        {
+            "san": "Nf3",
+            "comment": "Developing the knight and attacking e5."
+        },
+        {
+            "san": "Nc6",
+            "comment": "Defending the pawn and developing."
+        },
+        {
+            "san": "Bc4",
+            "comment": "Targeting f7 — classic Italian Game setup."
+        }
+        ]
+    }
+    ]

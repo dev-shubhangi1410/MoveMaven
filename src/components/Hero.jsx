@@ -1,6 +1,7 @@
 import React from 'react';
 import { Crown, Play } from 'lucide-react';
 import { Link } from "react-router-dom";
+import courses from "../data/courses.json";
 
 export const Hero = () => {
   return (
@@ -24,7 +25,7 @@ export const Hero = () => {
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             Practice, memorize, and explore openings like a pro — Jump in instantly. Sign up later to track your progress.
           </p>
-          <Link to="/trainer">
+          <Link to={`/trainer/${courses[0].id}`}>
             <button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold px-8 py-4 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/50 flex items-center mx-auto gap-3 group">
               <Play className="h-6 w-6 group-hover:scale-110 transition-transform" />
               Practice Now

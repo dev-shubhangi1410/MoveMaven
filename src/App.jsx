@@ -10,7 +10,7 @@ function App() {
     <Router basename="/MoveMaven/">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/trainer" element={<TrainerPage />} />
+        <Route path="/trainer/:id" element={<TrainerPage />} />
         <Route path="/courses" element={<CoursesPage />} /> {/* <-- Add this route */}
       </Routes>
     </Router>
