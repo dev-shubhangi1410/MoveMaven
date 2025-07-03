@@ -1,34 +1,90 @@
-    [
-    {
-        "id": "italian-game",
-        "title": "Italian Game",
-        "side": "white", 
-        "description": "Master this classical opening that leads to exciting tactical battles. Perfect for beginners learning opening principles.",
-        "difficulty": "Beginner",
-        "duration": "2 hours",
-        "rating": 4.8,
-        "image": "♔",
-        "moves": [
-        {
-            "san": "e4",
-            "comment": "White occupies the center."
-        },
-        {
-            "san": "e5",
-            "comment": "Black responds symmetrically."
-        },
-        {
-            "san": "Nf3",
-            "comment": "Developing the knight and attacking e5."
-        },
-        {
-            "san": "Nc6",
-            "comment": "Defending the pawn and developing."
-        },
-        {
-            "san": "Bc4",
-            "comment": "Targeting f7 — classic Italian Game setup."
-        }
-        ]
-    }
+[
+  {
+    "id": "italian-game",
+    "title": "Italian Game",
+    "side": "white",
+    "description": "Master this classical opening that leads to exciting tactical battles. Perfect for beginners learning opening principles.",
+    "difficulty": "Beginner",
+    "duration": "2 hours",
+    "rating": 4.8,
+    "image": "♔",
+    "moves": [
+      {
+        "san": "e4",
+        "comment": "Play e4 to occupy the center and open lines for your bishop and queen."
+      },
+      {
+        "san": "e5",
+        "comment": "Black plays e5 to contest the center."
+      },
+      {
+        "san": "Nf3",
+        "comment": "Develop your knight to f3 and attack Black’s e5 pawn."
+      },
+      {
+        "san": "Nc6",
+        "comment": "Black defends the e5 pawn and develops their knight."
+      },
+      {
+        "san": "Bc4",
+        "comment": "Play Bc4 to place your bishop on its most active diagonal, targeting Black’s f7 square."
+      },
+      {
+        "san": "Bc5",
+        "comment": "Black mirrors your move and plays Bc5 to develop their bishop."
+      },
+      {
+        "san": "c3",
+        "comment": "Play c3 to prepare d4 and strengthen your center."
+      },
+      {
+        "san": "Nf6",
+        "comment": "Black develops another knight and attacks your e4 pawn."
+      },
+      {
+        "san": "d4",
+        "comment": "Push d4 to challenge Black’s center and open up the position."
+      },
+      {
+        "san": "exd4",
+        "comment": "Black captures your pawn on d4."
+      },
+      {
+        "san": "cxd4",
+        "comment": "Recapture on d4 with your c3 pawn to maintain a strong center."
+      },
+      {
+        "san": "Bb4+",
+        "comment": "Black checks your king and tries to pin your knight after Nc3."
+      },
+      {
+        "san": "Nc3",
+        "comment": "Block the check by developing your knight to c3."
+      },
+      {
+        "san": "Nxe4",
+        "comment": "Black captures your e4 pawn and grabs material."
+      },
+      {
+        "san": "O-O",
+        "comment": "Castle kingside to bring your king to safety and prepare your rook for central activity."
+      },
+      {
+        "san": "Nxc3",
+        "comment": "Black captures your knight on c3."
+      },
+      {
+        "san": "bxc3",
+        "comment": "Recapture on c3 with your b-pawn and strengthen your center pawns."
+      },
+      {
+        "san": "O-O",
+        "comment": "Black castles kingside, bringing their king to safety."
+      },
+      {
+        "san": "Re1",
+        "comment": "Play Re1 to place your rook on the open e-file and increase pressure on the center."
+      }
     ]
+  }
+]
