@@ -14,7 +14,7 @@ function Home() {
       <Header />
       <Hero />
       <FeaturedCourses />
-      <InteractiveBoard />
+      {/* <InteractiveBoard /> */}
       <Footer />
     </div>
   );

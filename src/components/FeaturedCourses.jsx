@@ -6,20 +6,24 @@ import CourseCard from './CourseCard';
 export const FeaturedCourses = () => {
   const courses = [
     {
-      title: "Italian Game",
-      description: "Master this classical opening that leads to exciting tactical battles. Perfect for beginners learning opening principles.",
-      difficulty: "Beginner",
-      duration: "2 hours",
-      rating: 4.8,
-      image: "♔"
+      "id": "italian-game",
+      "title": "Italian Game",
+      "side": "white",
+      "description": "Master this classical opening that leads to exciting tactical battles. Perfect for beginners learning opening principles.",
+      "difficulty": "Beginner",
+      "duration": "2 hours",
+      "rating": 4.8,
+      "image": "♔",
     },
     {
-      title: "Sicilian Defense",
-      description: "Explore the most popular defense against 1.e4. Learn key variations and strategic concepts used by grandmasters.",
-      difficulty: "Intermediate",
-      duration: "3 hours",
-      rating: 4.9,
-      image: "♛"
+      "id": "sicilian-defense",
+      "title": "Sicilian Defense",
+      "side": "black",
+      "description": "The Sicilian creates an imbalanced game from the start, offering Black dynamic chances for a win.",
+      "difficulty": "Intermediate",
+      "duration": "5 hours",
+      "rating": 4.9,
+      "image": "♞",
     }
   ];
 

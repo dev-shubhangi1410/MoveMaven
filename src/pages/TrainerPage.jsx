@@ -1,4 +1,4 @@
-// TrainerPage.jsx — Responsive Chessboard + Eval Bar + Mate Detection
+// TrainerPage.jsx — Responsive Chessboard + Eval Bar + Line Selector Below Chatbox + Opening Title
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import courses from '../data/courses.json';
@@ -6,11 +6,14 @@ import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Crown } from 'lucide-react';
+import { Crown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function TrainerPage() {
   const { id } = useParams();
   const course = courses.find(c => c.id === id);
+
+  const [selectedLineIndex, setSelectedLineIndex] = useState(0);
+  const selectedLine = course?.lines?.[selectedLineIndex] || { moves: [] };
 
   const [game, setGame] = useState(new Chess());
   const [moveIndex, setMoveIndex] = useState(0);
@@ -20,60 +23,41 @@ export default function TrainerPage() {
   const [orientation, setOrientation] = useState('white');
   const [boardWidth, setBoardWidth] = useState(480);
 
-  // ⬇ NEW: evaluation state
   const engine = useRef(null);
-  const [evalScore, setEvalScore] = useState(null); // null for “loading”
-  const [mateIn, setMateIn] = useState(null);       // null = no mate
+  const [evalScore, setEvalScore] = useState(null);
+  const [mateIn, setMateIn] = useState(null);
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
-
-  // ⬇ Bar height based on user orientation
   const getUserBarPercent = (cp) => {
-    const adjusted = orientation === "black" ? -cp : cp; // good for me = grows upward
-    return clamp(50 + adjusted / 20, 0, 100);            // ±1000 → 0-100%
+    const adjusted = orientation === 'black' ? -cp : cp;
+    return clamp(50 + adjusted / 20, 0, 100);
   };
-
-  // ⬇ Where to place the score text
   const getScorePositionClass = () => {
-    if ((evalScore === 0 || mateIn === 0)) {
-      return orientation === 'white' ? 'bottom-0' : 'top-0';
-    }
-    if ((evalScore > 0 || mateIn > 0)) {
-      return orientation === 'white' ? 'bottom-0' : 'top-0';
-    }
+    if (evalScore === 0 || mateIn === 0) return orientation === 'white' ? 'bottom-0' : 'top-0';
+    if (evalScore > 0 || mateIn > 0) return orientation === 'white' ? 'bottom-0' : 'top-0';
     return orientation === 'black' ? 'bottom-0' : 'top-0';
   };
 
   useEffect(() => {
-    // Initialize Stockfish engine
     engine.current = new Worker('/MoveMaven/stockfish/stockfish.js');
-
     engine.current.onmessage = (e) => {
       let line = e.data;
-      if (typeof line !== 'string' && typeof line?.data === 'string') {
-        line = line.data;
-      }
+      if (typeof line !== 'string' && typeof line?.data === 'string') line = line.data;
       if (typeof line !== 'string') return;
-      // if (line.includes('score')) console.log('Stockfish:', line);
-
-      // Parse mate score
       if (line.startsWith('info') && line.includes('score mate')) {
         const m = line.match(/score mate (-?\d+)/);
         if (m) {
           setMateIn(parseInt(m[1], 10));
-          setEvalScore(null); // hide centipawns if mate
+          setEvalScore(null);
         }
-      }
-      // Parse centipawn score
-      else if (line.startsWith('info') && line.includes('score cp')) {
+      } else if (line.startsWith('info') && line.includes('score cp')) {
         const m = line.match(/score cp (-?\d+)/);
         if (m) {
           setEvalScore(parseInt(m[1], 10));
-          setMateIn(null); // hide mate if centipawn
+          setMateIn(null);
         }
       }
     };
-
     engine.current.postMessage('uci');
     return () => engine.current?.terminate();
   }, []);
@@ -86,7 +70,8 @@ export default function TrainerPage() {
     setHistory([]);
     setRedoStack([]);
     setOrientation(course?.side?.toLowerCase() === 'black' ? 'black' : 'white');
-  }, [id]);
+    playNextIfOpponent(fresh, 0);
+  }, [id, selectedLineIndex]);
 
   const boardContainerRef = useRef(null);
   useEffect(() => {
@@ -112,7 +97,7 @@ export default function TrainerPage() {
   }, [game]);
 
   const playNextIfOpponent = (tempGame, newIdx) => {
-    const nextMove = course?.moves?.[newIdx];
+    const nextMove = selectedLine?.moves?.[newIdx];
     if (!nextMove) return;
 
     const moveColor = tempGame.turn();
@@ -143,7 +128,7 @@ export default function TrainerPage() {
     }
     if (!res) { setStatus('❌ Invalid move.'); return false; }
 
-    if (res.san === course.moves[moveIndex]?.san) {
+    if (res.san === selectedLine.moves[moveIndex]?.san) {
       setGame(temp);
       const newIdx = moveIndex + 1;
       setMoveIndex(newIdx);
@@ -185,7 +170,7 @@ export default function TrainerPage() {
     setRedoStack([]);
   };
 
-  const progressPercent = ((moveIndex / course.moves.length) * 100).toFixed(0);
+  const progressPercent = ((moveIndex / selectedLine.moves.length) * 100).toFixed(0);
   if (!course) return <div className="text-white text-center py-20">Course not found</div>;
 
   return (
@@ -196,6 +181,11 @@ export default function TrainerPage() {
       <div className="h-2 bg-gray-700">
         <div className="h-full bg-[#3bc0f2]" style={{ width: `${progressPercent}%` }} />
       </div>
+
+      {/* Opening title
+      <div className="text-center my-4">
+        <h1 className="text-3xl font-bold text-[#3bc0f2]">{course.title}</h1>
+      </div> */}
 
       <div className="flex flex-col gap-8 px-4 lg:px-16 py-10">
         <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start">
@@ -208,18 +198,12 @@ export default function TrainerPage() {
             <div className="w-5 rounded overflow-hidden bg-black relative text-xs text-white"
               style={{ height: `${boardWidth}px`, minHeight: 320, maxHeight: 600 }}>
 
-              {/* User's side bar */}
-              <div className={`absolute ${orientation === "white" ? "bottom-0" : "top-0"} left-0 right-0 bg-white transition-all duration-300`}
-                  style={{ height: `${getUserBarPercent(evalScore ?? (mateIn > 0 ? 1000 : -1000))}%` }} />
+              <div className={`absolute ${orientation === 'white' ? 'bottom-0' : 'top-0'} left-0 right-0 bg-white transition-all duration-300`}
+                   style={{ height: `${getUserBarPercent(evalScore ?? (mateIn > 0 ? 1000 : -1000))}%` }} />
 
-              {/* Score Text */}
               <div
                 className={`absolute ${getScorePositionClass()} left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.5rem] font-bold`}
-                style={{
-                  color: evalScore > 0 ? '#000' : '#fff',
-                  // textShadow: '0 0 2px rgba(0,0,0,0.8)',
-                }}
-              >
+                style={{ color: evalScore > 0 ? '#000' : '#fff' }}>
                 {mateIn !== null
                   ? `#${Math.abs(mateIn)}`
                   : evalScore !== null
@@ -237,38 +221,49 @@ export default function TrainerPage() {
                 onPieceDrop={handlePieceDrop}
                 boardWidth={boardWidth}
                 boardOrientation={orientation}
-                customBoardStyle={{
-                  borderRadius: '0.25rem',
-                  boxShadow: '0 0 10px rgba(255,255,255,0.1)',
-                }}
+                customBoardStyle={{ borderRadius: '0.25rem', boxShadow: '0 0 10px rgba(255,255,255,0.1)' }}
               />
               <div className="flex gap-4 mt-4">
                 <button onClick={undoMove}
-                        className="bg-[#003566] px-4 py-2 rounded hover:bg-[#2d6cee]">
-                  Undo
-                </button>
+                        className="bg-[#003566] px-4 py-2 rounded hover:bg-[#2d6cee]">Undo</button>
                 <button onClick={redoMove}
-                        className="bg-[#003566] px-4 py-2 rounded hover:bg-[#2d6cee]">
-                  Redo
-                </button>
+                        className="bg-[#003566] px-4 py-2 rounded hover:bg-[#2d6cee]">Redo</button>
                 <button onClick={resetCourse}
-                        className="bg-[#ffc300] px-4 py-2 rounded text-black hover:bg-[#ffd60a]">
-                  Reset
-                </button>
+                        className="bg-[#ffc300] px-4 py-2 rounded text-black hover:bg-[#ffd60a]">Reset</button>
               </div>
             </div>
           </div>
 
-          {/* Chatbox */}
-          <div className="w-full max-w-[400px] bg-[#111926] rounded-xl p-4 border border-[#2d6cee] shadow-xl">
-            <h2 className="text-[#3bc0f2] text-xl flex items-center gap-2 font-bold mb-4">
+          {/* Chatbox with Line Selector Below */}
+          <div className="w-full max-w-[400px] bg-[#111926] rounded-xl p-4 border border-[#2d6cee] shadow-xl flex flex-col gap-4">
+            <h2 className="text-xl font-bold text-white mb-1 rounded-md text-center bg-gray-700 ">
+              {course?.title}
+            </h2>
+            <h2 className="text-[#3bc0f2] text-xl flex items-center gap-2 font-bold">
               <Crown className="w-6 h-6 text-blue-400" /> Sensei says:
             </h2>
             <div className="space-y-3">
               <div className="bg-[#003566] p-3 rounded-xl w-fit max-w-full">
-                <p>{course.moves[moveIndex]?.comment || '🏁 You have completed this course!'}</p>
+                <p>{selectedLine.moves[moveIndex]?.comment || '🏁 You have completed this line!'}</p>
               </div>
               {status && <div className="text-sm text-[#ffc300]">{status}</div>}
+            </div>
+
+            {/* Line Selector */}
+            <div className="flex justify-center items-center gap-4 mt-4">
+              <button
+                onClick={() => setSelectedLineIndex((prev) => (prev - 1 + course.lines.length) % course.lines.length)}
+                className="bg-[#003566] hover:bg-[#2d6cee] px-2 py-1 rounded"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="text-lg font-semibold">{selectedLine.name}</span>
+              <button
+                onClick={() => setSelectedLineIndex((prev) => (prev + 1) % course.lines.length)}
+                className="bg-[#003566] hover:bg-[#2d6cee] px-2 py-1 rounded"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </div>

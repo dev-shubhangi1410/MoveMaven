@@ -8,82 +8,113 @@
     "duration": "2 hours",
     "rating": 4.8,
     "image": "♔",
-    "moves": [
+    "lines": [
       {
-        "san": "e4",
-        "comment": "Play e4 to occupy the center and open lines for your bishop and queen."
+        "name": "Main Line",
+        "moves": [
+          { "san": "e4", "comment": "White starts off the game with e4, striking in the centre." },
+          { "san": "e5", "comment": "Black strikes back with e5." },
+          { "san": "Nf3", "comment": "White attacks the e5 pawn." },
+          { "san": "Nc6", "comment": "Black defends the pawn." },
+          { "san": "Bc4", "comment": "The starting position of the Italian Game. The bishop on c4 is on its most active square, attacking the weak f7 pawn." },
+          { "san": "Bc5", "comment": "Black develops the bishop to an active square. This is the Giuoco Piano, which means 'Quiet Game'." },
+          { "san": "c3", "comment": "White plays c3 to prepare the d4 pawn push and control the center." },
+          { "san": "Nf6", "comment": "Black develops another knight and attacks the e4 pawn." },
+          { "san": "d3", "comment": "White defends the e4 pawn and prepares for a more positional game." },
+          { "san": "d6", "comment": "Black solidifies their e5 pawn and opens lines for the light-squared bishop." },
+          { "san": "O-O", "comment": "White castles the king to safety, preparing for the center to open up." },
+          { "san": "a6", "comment": "A useful move. Black prepares to give the c5 bishop an escape square on a7." }
+        ]
       },
       {
-        "san": "e5",
-        "comment": "Black plays e5 to contest the center."
+        "name": "Two Knights Defense, Knight Attack",
+        "moves": [
+          { "san": "e4", "comment": "Play e4 to occupy the center and open lines for your bishop and queen." },
+          { "san": "e5", "comment": "Black plays e5 to contest the center." },
+          { "san": "Nf3", "comment": "Develop your knight to f3 and attack Black’s e5 pawn." },
+          { "san": "Nc6", "comment": "Black defends the e5 pawn and develops their knight." },
+          { "san": "Bc4", "comment": "Play Bc4 to place your bishop on its most active diagonal." },
+          { "san": "Nf6", "comment": "Black develops the other knight, entering the Two Knights Defense." },
+          { "san": "Ng5", "comment": "White launches the aggressive Knight Attack, putting immediate pressure on the weak f7 square." },
+          { "san": "d6", "comment": "A dubious move that fails to properly address the threat on f7. The main line is 5...d5." },
+          { "san": "Nxf7", "comment": "White takes advantage, forking the Black queen and rook." },
+          { "san": "Qe7", "comment": "Black is forced to move the queen, allowing the rook to be captured." },
+          { "san": "Nxh8", "comment": "White captures the rook on h8, gaining a significant material advantage." }
+        ]
+      }
+    ]
+  }
+  ,
+
+  {
+    "id": "sicilian-defense",
+    "title": "Sicilian Defense",
+    "side": "black",
+    "description": "The Sicilian creates an imbalanced game from the start, offering Black dynamic chances for a win.",
+    "difficulty": "Intermediate",
+    "duration": "5 hours",
+    "rating": 4.9,
+    "image": "♞",
+    "lines": [
+      {
+        "name": "Najdorf Variation",
+        "moves": [
+          { "san": "e4", "comment": "White opens with the King's Pawn, controlling the center." },
+          { "san": "c5", "comment": "Black responds with the Sicilian Defense, fighting for central control and creating an asymmetrical position." },
+          { "san": "Nf3", "comment": "White develops the knight and prepares to challenge Black's control of the d4 square." },
+          { "san": "d6", "comment": "Black supports the c5 pawn and prepares to develop the light-squared bishop." },
+          { "san": "d4", "comment": "White strikes in the center, opening lines for the pieces." },
+          { "san": "cxd4", "comment": "Black exchanges a wing pawn for a central pawn, a key idea in the Sicilian." },
+          { "san": "Nxd4", "comment": "White recaptures, placing a knight in a strong central position." },
+          { "san": "Nf6", "comment": "Black develops a knight and attacks the e4 pawn." },
+          { "san": "Nc3", "comment": "White develops another knight and defends the e4 pawn." },
+          { "san": "a6", "comment": "The signature move of the Najdorf. Black prevents the white knight from jumping to b5 and prepares to expand on the queenside." }
+        ]
       },
       {
-        "san": "Nf3",
-        "comment": "Develop your knight to f3 and attack Black’s e5 pawn."
+        "name": "Dragon Variation",
+        "moves": [
+          { "san": "e4", "comment": "White opens with the King's Pawn, controlling the center." },
+          { "san": "c5", "comment": "Black responds with the Sicilian Defense." },
+          { "san": "Nf3", "comment": "White develops the knight." },
+          { "san": "d6", "comment": "Black supports the c5 pawn." },
+          { "san": "d4", "comment": "White strikes in the center." },
+          { "san": "cxd4", "comment": "Black exchanges pawns." },
+          { "san": "Nxd4", "comment": "White recaptures with the knight." },
+          { "san": "Nf6", "comment": "Black develops and attacks the e4 pawn." },
+          { "san": "Nc3", "comment": "White develops and defends." },
+          { "san": "g6", "comment": "The defining move of the Dragon. Black prepares to fianchetto the dark-squared bishop to g7, creating a powerful defensive and offensive piece along the long diagonal." }
+        ]
       },
       {
-        "san": "Nc6",
-        "comment": "Black defends the e5 pawn and develops their knight."
+        "name": "Classical Variation",
+        "moves": [
+          { "san": "e4", "comment": "White opens with the King's Pawn." },
+          { "san": "c5", "comment": "Black responds with the Sicilian Defense." },
+          { "san": "Nf3", "comment": "White develops the knight." },
+          { "san": "d6", "comment": "Black supports the c5 pawn." },
+          { "san": "d4", "comment": "White strikes in the center." },
+          { "san": "cxd4", "comment": "Black exchanges pawns." },
+          { "san": "Nxd4", "comment": "White recaptures with the knight." },
+          { "san": "Nf6", "comment": "Black develops and attacks the e4 pawn." },
+          { "san": "Nc3", "comment": "White develops and defends." },
+          { "san": "Nc6", "comment": "The Classical move. Black develops the other knight to its most natural square, leading to a solid and flexible setup." }
+        ]
       },
       {
-        "san": "Bc4",
-        "comment": "Play Bc4 to place your bishop on its most active diagonal, targeting Black’s f7 square."
-      },
-      {
-        "san": "Bc5",
-        "comment": "Black mirrors your move and plays Bc5 to develop their bishop."
-      },
-      {
-        "san": "c3",
-        "comment": "Play c3 to prepare d4 and strengthen your center."
-      },
-      {
-        "san": "Nf6",
-        "comment": "Black develops another knight and attacks your e4 pawn."
-      },
-      {
-        "san": "d4",
-        "comment": "Push d4 to challenge Black’s center and open up the position."
-      },
-      {
-        "san": "exd4",
-        "comment": "Black captures your pawn on d4."
-      },
-      {
-        "san": "cxd4",
-        "comment": "Recapture on d4 with your c3 pawn to maintain a strong center."
-      },
-      {
-        "san": "Bb4+",
-        "comment": "Black checks your king and tries to pin your knight after Nc3."
-      },
-      {
-        "san": "Nc3",
-        "comment": "Block the check by developing your knight to c3."
-      },
-      {
-        "san": "Nxe4",
-        "comment": "Black captures your e4 pawn and grabs material."
-      },
-      {
-        "san": "O-O",
-        "comment": "Castle kingside to bring your king to safety and prepare your rook for central activity."
-      },
-      {
-        "san": "Nxc3",
-        "comment": "Black captures your knight on c3."
-      },
-      {
-        "san": "bxc3",
-        "comment": "Recapture on c3 with your b-pawn and strengthen your center pawns."
-      },
-      {
-        "san": "O-O",
-        "comment": "Black castles kingside, bringing their king to safety."
-      },
-      {
-        "san": "Re1",
-        "comment": "Play Re1 to place your rook on the open e-file and increase pressure on the center."
+        "name": "Sveshnikov Variation",
+        "moves": [
+          { "san": "e4", "comment": "White opens with the King's Pawn." },
+          { "san": "c5", "comment": "Black responds with the Sicilian Defense." },
+          { "san": "Nf3", "comment": "White develops the knight." },
+          { "san": "Nc6", "comment": "Black develops the queenside knight, controlling the center." },
+          { "san": "d4", "comment": "White strikes in the center." },
+          { "san": "cxd4", "comment": "Black exchanges pawns." },
+          { "san": "Nxd4", "comment": "White recaptures with the knight." },
+          { "san": "Nf6", "comment": "Black develops the other knight." },
+          { "san": "Nc3", "comment": "White defends the e4 pawn." },
+          { "san": "e5", "comment": "The key move of the Sveshnikov. Black immediately challenges White's central control, accepting a potentially weak d6 pawn in exchange for active piece play." }
+        ]
       }
     ]
   }
