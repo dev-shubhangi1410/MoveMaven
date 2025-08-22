@@ -1,7 +1,5 @@
 # 👑MoveMaven - Chess Opening Trainer
 
-**Live Demo**: [https://dev-kanishk293.github.io/MoveMaven/](https://dev-kanishk293.github.io/MoveMaven/)
-
 **MoveMaven** is an interactive chess opening training platform designed to help players of all levels — from beginners to advanced — build and master their opening repertoire.
 
 ## 🚀 Features
